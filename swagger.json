@@ -1,0 +1,86 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "Api de Enventos",
+        "description": "Api de  cadastro de Eventos a realizar",
+        "contact": {
+            "email": "suporte@hotmail.com"
+        },
+        "version": "1.0.1"
+},
+"servers":[
+    {
+        "description": " Api Eventos"
+    }
+],
+"paths": {
+    "/compras": {
+        "post": {
+            "sumary": "Cadastro de eventos",
+            "description": "rota responsavel por cadastrar eventos",
+            "tags": ["Compras"],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema":{
+                            "$ref": "#/components/schemas/Eventos"
+                        },
+                        "exemples":{
+                            "eventos": {
+                                "value":{
+                                    "name": "Eventos em Empresaas e Universidade ",
+                                    "description": "Você não vai ficar de fora!"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "responses":{
+            "401":{
+                "description": "Not Found"
+            }, 
+            "500": {
+                "description": "Internal Server Error"
+            },
+            "400": {
+                "description":"Product Already exists!"
+            }, 
+            "200": {
+                "description":"OK"
+            }
+
+        }
+    }
+},
+"components": {
+    "schemas":{
+        "eventos": {
+            "type": "eventos",
+            "properties":{
+                "idCliente":{
+                    "type": "string"
+                },
+                "idIngresso":{
+                    "type": "string"
+                },
+                "data":{
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "id":{
+                    "type": "string"
+                }
+
+
+            }
+        }
+    }
+    
+}
+
+
+}
