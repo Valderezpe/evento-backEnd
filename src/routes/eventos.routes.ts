@@ -12,28 +12,25 @@ eventosRouter.get('/', (req: Request, res: Response) => {
     res.status(200).json({msg: "server is alive"})
 })
 
-// eventosRouter.get("/eventos",  async function(req: Request, res: Response) {
-//     const eventos = await eventosRepository.find();
-//     res.json(eventos);
-// });
 eventosRouter.get("/eventos", async function(req: Request, res: Response) {
-    const results = await eventosRepository.findOne(req.params.id);
-    return res.send();
+    const allUsers = await eventosRepository.find();
+     return res.json(allUsers);
 });
+
 eventosRouter.post("/eventos", async function(req: Request, res: Response) {
     const eventos = await eventosRepository.create(req.body);
     const results = await eventosRepository.save(eventos);
-    return res.send("evento cadastrado dom suceso!");
+    return res.send(results);
 });
 eventosRouter.put("/eventos", async function(req: Request, res: Response) {
     const eventos = await eventosRepository.findOne(req.params.id);
     eventosRepository.merge(eventos, req.body);
     const results = await eventosRepository.save(eventos);
-    return res.send("alteração feito com sucesso.");
+    return res.send(results);
 });
-eventosRouter.delete("/eventos", async function(req: Request, res: Response) {
+eventosRouter.delete("/eventos/:id", async function(req: Request, res: Response) {
     const results = await eventosRepository.delete(req.params.id);
-    return res.send("evento deletado com sucesso!");
+    return res.send(results);
 });
 
 })

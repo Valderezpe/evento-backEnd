@@ -14,24 +14,24 @@ empresaRouter.get('/', (req: Request, res: Response) => {
 })
 
 empresaRouter.get("/empresa", async function(req: Request, res: Response) {
-    const empresa = await empresaRepository.find();
-    res.json(empresa);
+    const allUsers = await empresaRepository.find();
+    return res.json(allUsers);
 });
 
 empresaRouter.post("/empresa",  async function(req: Request, res: Response) {
     const empresa = await empresaRepository.create(req.body);
     const results = await empresaRepository.save(empresa);
-    return res.send("cadastro feito com sucesso!");
+    return res.send(results);
 });
 empresaRouter.put("/empresa", async function(req: Request, res: Response) {
     const empresa = await empresaRepository.findOne(req.params.id);
     empresaRepository.merge(empresa, req.body);
     const results = await empresaRepository.save(empresa);
-    return res.send("alteração feita com sucesso!");
+    return res.send(results);
 });
-empresaRouter.delete("/empresa", async function(req: Request, res: Response) {
+empresaRouter.delete("/empresa/:id", async function(req: Request, res: Response) {
     const results = await empresaRepository.delete(req.params.id);
-    return res.send("empresa excluida com sucesso");
+    return res.send(results);
 });
 })
 

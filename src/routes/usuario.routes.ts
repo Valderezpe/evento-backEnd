@@ -16,18 +16,18 @@ usuarioRouter.get('/', (req: Request, res: Response) => {
 })
 
 usuarioRouter.get("/usuario", async function(req: Request, res: Response) {
-    const usuario = await usuarioRepository.find();
-    res.json(usuario);
+    const allUsers = await usuarioRepository.find();
+     return res.json(allUsers);
 });
 
 usuarioRouter.post("/usuario", async function(req: Request, res: Response) {
-    const usuario = await usuarioRepository.find();
-    res.json("Cadastro feito com sucesso!");
+    const results = await usuarioRepository.findOne(req.params.id);
+    res.json(results);
 });
 
-usuarioRouter.delete("/usuario", async function(req: Request, res: Response) {
+usuarioRouter.delete("/usuario/:id", async function(req: Request, res: Response) {
     const results = await usuarioRepository.delete(req.params.id);
-    return res.send("excluida com sucesso!");
+    return res.send(results);
 });
 })
 

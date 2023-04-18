@@ -16,18 +16,18 @@ ingresosRouter.get('/', (req: Request, res: Response) => {
 })
 
 ingresosRouter.get("/ingresso", async function(req: Request, res: Response) {
-    const ingresso = await ingressoRepository.find();
-    res.json(ingresso);
+    const allUsers = await ingressoRepository.find();
+    return res.json(allUsers);
 });
 
 ingresosRouter.post("/ingresso", async function(req: Request, res: Response) {
     const results = await ingressoRepository.findOne(req.params.id);
-    return res.send("Adicionado feita com sucesso.");
+    return res.send(results);
 });
 
-ingresosRouter.delete("/ingresso", async function(req: Request, res: Response) {
+ingresosRouter.delete("/ingresso/:id", async function(req: Request, res: Response) {
     const results = await ingressoRepository.delete(req.params.id);
-    return res.send("Excluida com sucesso!");
+    return res.send(results);
 });
 })
 
