@@ -27,6 +27,7 @@ ingresosRouter.post("/ingresso", async function(req: Request, res: Response) {
 
 ingresosRouter.delete("/ingresso/:id", async function(req: Request, res: Response) {
     const results = await ingressoRepository.delete(req.params.id);
+   
     return res.send(results);
 });
 })

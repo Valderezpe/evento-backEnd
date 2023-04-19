@@ -22,7 +22,7 @@ usuarioRouter.get("/usuario", async function(req: Request, res: Response) {
 
 usuarioRouter.post("/usuario", async function(req: Request, res: Response) {
     const results = await usuarioRepository.findOne(req.params.id);
-    res.json(results);
+    return res.json(results);
 });
 
 usuarioRouter.delete("/usuario/:id", async function(req: Request, res: Response) {
